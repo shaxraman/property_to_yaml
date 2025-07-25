@@ -1,0 +1,38 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Build output
+/build/
+/bin/
+/dist/
+
+# Go modules
+vendor/
+
+# Dependency directories (for older Go versions)
+Godeps/
+
+# IDE/editor files
+*.swp
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+*.tmp
+
+# YAML or properties files
+*.properties
+*.yaml
