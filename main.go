@@ -27,11 +27,13 @@ func (o orderedNode) MarshalYAML() (interface{}, error) {
 }
 
 func buildTree(pairs []propLine, sortAlpha bool) *yaml.Node {
-	// Если все ключи пустые (значение на этом уровне)
-	if len(pairs) == 1 && len(pairs[0].Keys) == 0 {
-		return &yaml.Node{
-			Kind:  yaml.ScalarNode,
-			Value: pairs[0].Value,
+	// Если есть пара с пустыми ключами, вернуть ScalarNode с её значением
+	for _, p := range pairs {
+		if len(p.Keys) == 0 {
+			return &yaml.Node{
+				Kind:  yaml.ScalarNode,
+				Value: p.Value,
+			}
 		}
 	}
 
@@ -63,7 +65,6 @@ func buildTree(pairs []propLine, sortAlpha bool) *yaml.Node {
 		})
 	}
 
-	// Собираем Ordered map для YAML
 	node := yaml.Node{
 		Kind:    yaml.MappingNode,
 		Content: []*yaml.Node{},
